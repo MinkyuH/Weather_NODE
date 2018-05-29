@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/MinkyuH/Weather_NODE#readme",
   "dependencies": {
-    "request": "^2.87.0"
+    "request": "^2.87.0",
+    "yargs": "^11.0.0"
   }
 }
