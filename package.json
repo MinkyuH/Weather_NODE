@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/MinkyuH/Weather_NODE/issues"
   },
-  "homepage": "https://github.com/MinkyuH/Weather_NODE#readme"
+  "homepage": "https://github.com/MinkyuH/Weather_NODE#readme",
+  "dependencies": {
+    "request": "^2.87.0"
+  }
 }
