@@ -1,6 +1,6 @@
 const REQUEST = require('request')
 
-var geocodeAddress = (address) =>{
+var geocodeAddress = (address, callback) =>{
     let userURIAddressComponent = encodeURIComponent(address)
 
 REQUEST({
@@ -9,20 +9,22 @@ REQUEST({
     },
     (error, response, body) =>{
         console.log(userURIAddressComponent);
-        console.log(body);
+
         if(error)
         {
-            console.log('Unable to connect to GOOGLE SERVER');
+            callback(console.log('Unable to connect to GOOGLE SERVER'));
         }
-        else if (body.status === "ZERO_RESULT")
+        else if (body.status === "ZERO_RESULTS")
         {
-            console.log('Invalid address')
+            callback('Invalid address')
         }
-        else if (body.status === "Ok")
+        else
         {
-            console.log(`Address:  ${body.results[0].formatted_address}`);
-            console.log(`Geolocation (Latitutde): ${body.results[0].geometry.location.lat}`);
-            console.log(`Geolocation (Longitutde): ${body.results[0].geometry.location.lng}`);
+            callback(undefined, {
+                address: body.results[0].formatted_address,
+                latitude: body.results[0].geometry.location.lat,
+                longitude: body.results[0].geometry.location.lng
+            })
         }
 })
 
@@ -30,3 +32,5 @@ REQUEST({
 };
 
 module.exports.geocodeAddress =geocodeAddress;
+
+//8790922b74878df0d8cac35e89ef432c
